@@ -6,6 +6,11 @@ public class AuthTicketResponse extends Response {
     private int code;
     private TicketGrantingTicket TGT;
 
+    public AuthTicketResponse(int code, TicketGrantingTicket TGT) {
+        this.code = code;
+        this.TGT = TGT;
+    }
+
     public int getCode() {
         return code;
     }
