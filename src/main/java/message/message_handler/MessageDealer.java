@@ -57,6 +57,8 @@ public class MessageDealer {
 
     //对指定的消息进行相应的处理
     boolean messageDeal(List<Message> messageList, MessageSender messageSender){
-        messageList messageList.getFirstMessage();
+         Message message = MessageDealer.getFirstMessage();
+         MessageHandler handler = getMessageHandler(message);
+         return handler.handle(messageList, messageSender);
     }
 }
