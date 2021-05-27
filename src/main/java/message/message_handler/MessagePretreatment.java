@@ -3,14 +3,38 @@ package message.message_handler;
 import message.Message;
 import message.MessageType;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class MessagePretreatment {
-    Map<MessageType, IdentificationStage > messageTypeStageMap;
-    Map< IdentificationStage, Set<MessageType>> messageStageSetMap;
+
+    public static final Map<MessageType, IdentificationStage > messageTypeStageMap;
+
+
+    public static final Map< IdentificationStage, Set<MessageType>> messageStageSetMap;
+
+    static {
+
+        messageTypeStageMap = new HashMap<>();
+
+
+        messageTypeStageMap.put(MessageType.AUTH_LOGIN_REQUEST, IdentificationStage.AUTH_REQUEST);
+
+
+
+
+
+        messageStageSetMap = new HashMap<>();
+
+
+
+        messageStageSetMap.put(IdentificationStage.AUTH_REQUEST, new HashSet<>(Collections.singleton(MessageType.AUTH_LOGIN_REQUEST)));
+
+
+
+    }
+
     IdentificationStage getMessageStage(Message message){
+
         return null;
 
     }
