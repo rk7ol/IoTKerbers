@@ -5,6 +5,7 @@ import message.request.AccessRequestVerifyRequest;
 import message.request.AccessTicketRequest;
 import network.MessageSender;
 
+import java.util.List;
 import java.util.Set;
 
 public class AccessTicketRequestAndVerifyHandler extends MessageHandler{
@@ -13,7 +14,7 @@ public class AccessTicketRequestAndVerifyHandler extends MessageHandler{
     }
 
     @Override
-    boolean handle(Set<Message> messages, MessageSender messageSender) {
+    public boolean handle(List<Message> messages, MessageSender messageSender) {
         return false;
     }
 }

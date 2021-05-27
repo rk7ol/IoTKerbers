@@ -5,6 +5,7 @@ import message.response.AccessKeyResponse;
 import message.response.AccessTicketResponse;
 import network.MessageSender;
 
+import java.util.List;
 import java.util.Set;
 
 public class AccessKeyResponseHandler extends MessageHandler{
@@ -13,7 +14,7 @@ public class AccessKeyResponseHandler extends MessageHandler{
     }
 
     @Override
-    boolean handle(Set<Message> messages, MessageSender messageSender) {
+    public boolean handle(List<Message> messages, MessageSender messageSender) {
         return false;
     }
 }
