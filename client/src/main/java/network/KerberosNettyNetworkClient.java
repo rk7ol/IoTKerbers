@@ -8,13 +8,14 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class KerberosNettyNetworkClient {
     private final Bootstrap bootstrap;
+    private final EventLoopGroup workerGroup;
 
-    public KerberosNettyNetworkClient() {
+    public KerberosNettyNetworkClient(EventLoopGroup workerGroup) {
+        this.workerGroup = new NioEventLoopGroup();
         this.bootstrap = new Bootstrap();
     }
 
     void initializeClient(){
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
         bootstrap.group(workerGroup)
                 .channel(NioSocketChannel.class)
                 .option(ChannelOption.SO_KEEPALIVE,true)
@@ -29,7 +30,7 @@ public class KerberosNettyNetworkClient {
     }
 
     void connect (String host, int port){
-
+        bootstrap.connect(host,port);
     }
 
     void messageDeal(ChannelHandlerContext ctx, Object msg){
@@ -37,6 +38,6 @@ public class KerberosNettyNetworkClient {
     }
 
     void shutdown(){
-
+        workerGroup.shutdownGracefully();
     }
 }
