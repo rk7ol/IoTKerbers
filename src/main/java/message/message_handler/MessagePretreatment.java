@@ -67,13 +67,13 @@ public class MessagePretreatment {
 
     }
 
+    //获取消息所处识别阶段
     IdentificationStage getMessageStage(Message message){
-
-        return null;
-
+        return messageTypeStageMap.get(message.getType());
     }
+
     Set<MessageType> getMessageSet(IdentificationStage stage){
-        return null;
+        return messageStageSetMap.get(stage);
     }
     boolean messageCheck(Message message, List<Message> messageList){
         return false;
