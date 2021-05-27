@@ -64,6 +64,7 @@ public class MessagePretreatment {
         return messageTypeStageMap.get(message.getType());
     }
 
+    //获取消息所处数据集
     Set<MessageType> getMessageSet(IdentificationStage stage) {
         return messageStageSetMap.get(stage);
     }

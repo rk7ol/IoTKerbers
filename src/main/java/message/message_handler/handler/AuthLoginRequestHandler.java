@@ -41,4 +41,9 @@ public class AuthLoginRequestHandler extends MessageHandler {
 
         return false;
     }
+
+    @Override
+    public boolean handle(List<Message> messages, MessageSender messageSender) {
+        return false;
+    }
 }
