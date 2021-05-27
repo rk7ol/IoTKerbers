@@ -17,8 +17,6 @@ public class KerberosNettyNetworkClient {
     private final EventLoopGroup workerGroup;
 
 
-
-
     public KerberosNettyNetworkClient(EventLoopGroup workerGroup) {
         this.workerGroup = new NioEventLoopGroup();
         this.bootstrap = new Bootstrap();
@@ -53,7 +51,6 @@ public class KerberosNettyNetworkClient {
     void messageDeal(ChannelHandlerContext ctx, Object msg) throws InterruptedException {
 
         while (true){
-            Thread.sleep(100);
 
             Message message = MessageSender.pollMessage();
 
