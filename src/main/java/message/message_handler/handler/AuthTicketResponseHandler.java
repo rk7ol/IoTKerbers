@@ -1,11 +1,12 @@
 package message.message_handler.handler;
 
 import message.Message;
+import message.response.AuthTicketResponse;
 
 import java.util.Set;
 
-public class ServiceConfirmResponseHandler extends MessageHandler{
-    boolean handle(ServiceConfirmResponse serviceConfirmResponse, MessageSender messageSender){
+public class AuthTicketResponseHandler extends MessageHandler{
+    boolean handle(AuthTicketResponse authTicketResponse){
         return false;
     }
 

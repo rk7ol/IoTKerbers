@@ -1,13 +1,20 @@
 package message.message_handler.handler;
 
-public class AuthLoginRequestHandler {
+import message.Message;
+import message.request.AuthLoginRequest;
+
+import java.util.Set;
+
+public class AuthLoginRequestHandler extends MessageHandler {
     boolean handle(AuthLoginRequest authLoginRequest, MessageSender messageSender){
 
     }
-    boolean handle(AuthTicketResponse authTicketResponse){
+    @Override
+    boolean handle(Set<Message> messages, MessageSender messageSender) {
+        AuthLoginRequest authLogin = (AuthLoginRequest) messages.iterator().next();
 
-    }
-    boolean handle(AuthKeyResponse authKeyResponse){
+        handle(authLogin, messageSender);
 
+        return false;
     }
 }
