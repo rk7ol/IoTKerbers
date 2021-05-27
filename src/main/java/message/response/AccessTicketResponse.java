@@ -9,7 +9,6 @@ public class AccessTicketResponse extends Response{
         super(MessageType.ACCESS_TICKET_RESPONSE, code);
         this.TGT = TGT;
     }
-
     public byte[] getTGT() {
         return TGT;
     }
