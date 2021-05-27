@@ -4,6 +4,7 @@ import message.Message;
 import message.request.AuthLoginRequest;
 import network.MessageSender;
 
+import java.util.List;
 import java.util.Set;
 
 public class AuthLoginRequestHandler extends MessageHandler {
@@ -16,6 +17,11 @@ public class AuthLoginRequestHandler extends MessageHandler {
 
         handle(authLogin, messageSender);
 
+        return false;
+    }
+
+    @Override
+    public boolean handle(List<Message> messages, MessageSender messageSender) {
         return false;
     }
 }

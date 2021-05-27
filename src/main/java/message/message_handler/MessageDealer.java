@@ -48,8 +48,7 @@ public class MessageDealer {
         messageTypeHandlerMap.put(MessageType.SERVICE_CONFIRM_RESPONSE, new ServiceConfirmResponseHandler());
     }
 
-
-
+    //消息处理
     //获取消息对应的handler
     MessageHandler getMessageHandler(Message message){
         return messageTypeHandlerMap.get(message.getType());
