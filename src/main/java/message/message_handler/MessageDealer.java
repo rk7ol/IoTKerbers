@@ -41,11 +41,13 @@ public class MessageDealer {
 
 
 
+    //获取消息对应的handler
     MessageHandler getMessageHandler(Message message){
-
-        return null;
+        return messageTypeHandlerMap.get(message);
     }
+
+    //对指定的消息进行相应的处理
     boolean messageDeal(List<Message> messageList, MessageSender messageSender){
-        return false;
+        messageList messageList.getFirstMessage();
     }
 }
