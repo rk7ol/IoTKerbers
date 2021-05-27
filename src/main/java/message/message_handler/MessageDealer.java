@@ -6,13 +6,22 @@ import message.message_handler.handler.*;
 import network.MessageSender;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class MessageDealer {
     public static final Map<MessageType, MessageHandler> messageTypeHandlerMap;
 
+    public static final LinkedList<Message> RECEIVE_MESSAGE_LIST;
+
+    public static Message getFirstMessage(){
+        return RECEIVE_MESSAGE_LIST.getFirst();
+    }
+
     static {
+        RECEIVE_MESSAGE_LIST = new LinkedList<>();
+
 
         messageTypeHandlerMap = new HashMap<>();
         //消息对应的处理器
