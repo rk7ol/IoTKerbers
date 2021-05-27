@@ -5,11 +5,12 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import org.apache.logging.log4j.message.Message;
+import message.Message;
+import network.codec.MessageDecoder;
+import network.codec.MessageEncoder;
 
-import java.util.LinkedList;
-
-import network.MessageSender;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class KerberosNettyNetworkClient {
     private final Bootstrap bootstrap;
@@ -31,33 +32,32 @@ public class KerberosNettyNetworkClient {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline p = ch.pipeline();
-                        p.addLast();
+                        p.addLast(new MessageEncoder());
+                        p.addLast(new MessageDecoder());
                     }
                 });
     }
 
-    void connect (String host, int port){
-        bootstrap.connect(host,port);
+    Channel connect (String host, int port) throws ExecutionException, InterruptedException {
+        CompletableFuture<Channel> completableFuture = new CompletableFuture<>();
+        bootstrap.connect(host,port).addListener((ChannelFutureListener) future -> {
+            if (future.isSuccess()) {
+                completableFuture.complete(future.channel());
+            } else {
+                throw new IllegalStateException();
+            }
+        });
+        return completableFuture.get();
     }
 
     void messageDeal(ChannelHandlerContext ctx, Object msg) throws InterruptedException {
-
 
         while (true){
             Thread.sleep(100);
 
             Message message = MessageSender.pollMessage();
 
-
-
         }
-
-
-
-
-
-
-
 
     }
 
