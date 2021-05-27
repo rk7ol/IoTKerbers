@@ -5,7 +5,7 @@ import message.request.ServiceRequestVerifyRequest;
 import message.request.ServiceTicketRequest;
 import network.MessageSender;
 
-import java.util.Set;
+import java.util.List;
 
 public class ServiceTicketRequestAndVerifyHandler extends MessageHandler{
     boolean handle(ServiceTicketRequest serviceTicketRequest, ServiceRequestVerifyRequest serviceRequestVerifyRequest, MessageSender messageSender){
@@ -13,7 +13,7 @@ public class ServiceTicketRequestAndVerifyHandler extends MessageHandler{
     }
 
     @Override
-    boolean handle(Set<Message> messages, MessageSender messageSender) {
+    public boolean handle(List<Message> messages, MessageSender messageSender) {
         return false;
     }
 }

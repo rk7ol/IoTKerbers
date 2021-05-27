@@ -1,10 +1,5 @@
 package network;
-
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
-import org.apache.logging.log4j.message.Message;
-
-import java.util.LinkedList;
+import message.Message;
 
 
 public class NettyMessageSender extends MessageSender{

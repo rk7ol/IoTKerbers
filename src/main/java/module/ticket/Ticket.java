@@ -5,13 +5,20 @@ import module.Key;
 
 public class Ticket extends CryptUnit {
 
-    private Key key;
+    protected Key key;
 
-    private String clientID;
+    protected String clientID;
 
-    private byte[] address;
+    protected byte[] address;
 
-    private long validity;
+    protected long validity;
+
+    public Ticket(Key key, String clientID, byte[] address, long validity) {
+        this.key = key;
+        this.clientID = clientID;
+        this.address = address;
+        this.validity = validity;
+    }
 
     public Key getKey() {
         return key;

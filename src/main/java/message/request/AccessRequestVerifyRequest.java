@@ -1,8 +1,17 @@
 package message.request;
 
+import message.MessageType;
+
 public class AccessRequestVerifyRequest extends Request{
     private long service_id;
     private byte[] request_info;
+
+
+    public AccessRequestVerifyRequest( long service_id, byte[] request_info) {
+        super(MessageType.ACCESS_REQUEST_VERIFY_REQUEST);
+        this.service_id = service_id;
+        this.request_info = request_info;
+    }
 
     public long getService_id() {
         return service_id;

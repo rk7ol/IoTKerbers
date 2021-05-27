@@ -11,4 +11,8 @@ public class Key {
     public void setKey(byte[] key) {
         this.key = key;
     }
+
+    public Key(byte[] key) {
+        this.key = key;
+    }
 }

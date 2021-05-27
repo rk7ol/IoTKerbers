@@ -1,17 +1,15 @@
 package message.response;
 
+import message.MessageType;
 import module.ticket.TicketGrantingTicket;
 
 public class AuthTicketResponse extends Response {
-    private int code;
     private TicketGrantingTicket TGT;
 
-    public int getCode() {
-        return code;
-    }
 
-    public void setCode(int code) {
-        this.code = code;
+    public AuthTicketResponse(int code, TicketGrantingTicket TGT) {
+        super(MessageType.AUTH_TICKET_RESPONSE, code);
+        this.TGT = TGT;
     }
 
     public TicketGrantingTicket getTGT() {

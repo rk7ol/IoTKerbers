@@ -6,6 +6,7 @@ import message.response.AuthTicketResponse;
 import module.ticket.TicketGrantingTicket;
 import network.MessageSender;
 
+import java.util.List;
 import java.util.Set;
 
 public class AuthKeyResponseHandler extends MessageHandler{
@@ -29,7 +30,7 @@ public class AuthKeyResponseHandler extends MessageHandler{
     }
 
     @Override
-    boolean handle(Set<Message> messages, MessageSender messageSender) {
+    public boolean handle(List<Message> messages, MessageSender messageSender) {
         return false;
     }
 }
