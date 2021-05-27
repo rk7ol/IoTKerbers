@@ -52,13 +52,13 @@ public class MessageDealer {
 
     //获取消息对应的handler
     MessageHandler getMessageHandler(Message message){
-        return messageTypeHandlerMap.get(message);
+        return messageTypeHandlerMap.get(message.getType());
     }
 
     //对指定的消息进行相应的处理
     boolean messageDeal(List<Message> messageList, MessageSender messageSender){
-         Message message = MessageDealer.getFirstMessage();
+         Message message = MessageDealer.getFirstMessage();//获取第一个message
          MessageHandler handler = getMessageHandler(message);
-         return handler.handle(messageList, messageSender);
+         return handler.handle(messageList, messageSender);//返回bool
     }
 }
