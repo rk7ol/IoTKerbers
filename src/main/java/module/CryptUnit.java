@@ -24,9 +24,23 @@ public abstract class CryptUnit {
 
     }
 
+    public void encrypt(Key key){
+
+        encrypt(key.getKey());
+
+    }
+
     public void decrypt(byte[] key){
 
     }
+
+    public void decrypt(Key key){
+
+        decrypt(key.getKey());
+
+    }
+
+
 
 
 }
