@@ -1,6 +1,7 @@
 package network;
 
-import org.apache.logging.log4j.message.Message;
+
+import message.Message;
 
 import java.util.LinkedList;
 

@@ -5,15 +5,12 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import message.Message;
 import network.codec.MessageDecoder;
 import network.codec.MessageEncoder;
-import org.apache.logging.log4j.message.Message;
 
-import java.util.LinkedList;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-
-import network.MessageSender;
 
 public class KerberosNettyNetworkClient {
     private final Bootstrap bootstrap;
