@@ -1,8 +1,18 @@
 package module;
 
+import util.cryption.Cryptor;
+import util.cryption.DESCryptor;
+import util.cryption.DESDecryptor;
+import util.cryption.Decryptor;
+
 public abstract class CryptUnit {
     private byte[] ciphertext;
     private CryptState cryptState;
+
+
+    protected static final Cryptor CRYPTOR = new DESCryptor();
+
+    protected static final Decryptor DECRYPTOR = new DESDecryptor();
 
     public byte[] getCiphertext() {
         return ciphertext;
@@ -20,7 +30,7 @@ public abstract class CryptUnit {
         this.cryptState = cryptState;
     }
 
-    public void encrypt(byte[] key){
+    private void encrypt(byte[] key){
 
     }
 
@@ -30,9 +40,7 @@ public abstract class CryptUnit {
 
     }
 
-    public void decrypt(byte[] key){
-
-    }
+    protected abstract void decrypt(byte[] key);
 
     public void decrypt(Key key){
 
