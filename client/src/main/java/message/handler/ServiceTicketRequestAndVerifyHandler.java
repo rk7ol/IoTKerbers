@@ -1,6 +1,7 @@
-package message.message_handler.handler;
+package message.handler;
 
 import message.Message;
+import message.message_handler.handler.MessageHandler;
 import message.request.ServiceRequestVerifyRequest;
 import message.request.ServiceTicketRequest;
 import message.response.ServiceConfirmResponse;
@@ -8,7 +9,7 @@ import network.MessageSender;
 
 import java.util.List;
 
-public class ServiceTicketRequestAndVerifyHandler extends MessageHandler{
+public class ServiceTicketRequestAndVerifyHandler extends MessageHandler {
     boolean handle(ServiceTicketRequest serviceTicketRequest, ServiceRequestVerifyRequest serviceRequestVerifyRequest, MessageSender messageSender){
         byte[] bytes=serviceTicketRequest.getSST();
         serviceRequestVerifyRequest.getRequest_info();

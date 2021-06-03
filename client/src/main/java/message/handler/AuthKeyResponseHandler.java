@@ -1,6 +1,7 @@
-package message.message_handler.handler;
+package message.handler;
 
 import message.Message;
+import message.message_handler.handler.MessageHandler;
 import message.response.AuthKeyResponse;
 import message.response.AuthTicketResponse;
 import module.Key;
@@ -11,7 +12,7 @@ import network.NettyMessageSender;
 import java.util.List;
 
 
-public class AuthKeyResponseHandler extends MessageHandler{
+public class AuthKeyResponseHandler extends MessageHandler {
     boolean handle(AuthKeyResponse authKeyResponse, AuthTicketResponse authTicketResponse, MessageSender sender){
         //Auth_Ticket_Response 消息处理函数
         int n=authTicketResponse.getCode();

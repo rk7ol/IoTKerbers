@@ -1,19 +1,25 @@
-package message.message_handler.handler;
+package message.handler;
 
+import config.Config;
 import message.Message;
+import message.message_handler.handler.MessageHandler;
 import message.request.AccessRequestVerifyRequest;
 import message.request.AccessTicketRequest;
 import message.response.AccessTicketResponse;
 import message.response.Response;
+import module.Key;
 import module.ticket.TicketGrantingTicket;
 import network.MessageSender;
 
 import java.util.List;
 import java.util.Set;
 //服务授权
-public class AccessTicketRequestAndVerifyHandler extends MessageHandler{
+public class AccessTicketRequestAndVerifyHandler extends MessageHandler {
     boolean handle(AccessTicketRequest accessTicketRequest, AccessRequestVerifyRequest accessRequestVerifyRequest, MessageSender messageSender){
         byte[] TGT =accessTicketRequest.getTGT();
+
+
+        Key KTGS = Config.config.getTicketGrantingServerKey();
 
         //调用静态函数getTicketGrantingServerKey()获取KTGS，使用KTGS做为参数调用TGT的方法decrypt，解密TGT；
         byte[] bytes1=accessRequestVerifyRequest.getRequest_info();

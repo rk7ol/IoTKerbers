@@ -1,13 +1,14 @@
-package message.message_handler.handler;
+package message.handler;
 
 import message.Message;
+import message.message_handler.handler.MessageHandler;
 import message.response.ServiceConfirmResponse;
 import network.MessageSender;
 
 import java.util.List;
 
 
-public class ServiceConfirmResponseHandler extends MessageHandler{
+public class ServiceConfirmResponseHandler extends MessageHandler {
     boolean handle(ServiceConfirmResponse serviceConfirmResponse, MessageSender messageSender){
         if (serviceConfirmResponse.getCode()==1){
             return false;
