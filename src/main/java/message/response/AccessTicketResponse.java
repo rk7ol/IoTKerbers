@@ -1,19 +1,21 @@
 package message.response;
 
 import message.MessageType;
+import module.ticket.ServiceServerTicket;
+import module.ticket.Ticket;
 
 public class AccessTicketResponse extends Response{
-    private byte[] TGT;
+    private ServiceServerTicket SST;
 
-    public AccessTicketResponse(int code, byte[] TGT) {
+    public AccessTicketResponse(int code, ServiceServerTicket SST) {
         super(MessageType.ACCESS_TICKET_RESPONSE, code);
-        this.TGT = TGT;
+        this.SST = SST;
     }
-    public byte[] getTGT() {
-        return TGT;
+    public ServiceServerTicket getSST() {
+        return SST;
     }
 
-    public void setTGT(byte[] TGT) {
-        this.TGT = TGT;
+    public void setSST(ServiceServerTicket SST) {
+        this.SST = SST;
     }
 }

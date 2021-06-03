@@ -1,20 +1,21 @@
 package message.request;
 
 import message.MessageType;
+import module.RequestInfo;
 
 public class ServiceRequestVerifyRequest extends Request{
-    private byte[] Request_info;
+    private RequestInfo Request_info;
 
-    public ServiceRequestVerifyRequest( byte[] request_info) {
+    public ServiceRequestVerifyRequest(RequestInfo request_info) {
         super(MessageType.SERVICE_REQUEST_VERIFY_REQUEST);
         Request_info = request_info;
     }
 
-    public byte[] getRequest_info() {
+    public RequestInfo getRequest_info() {
         return Request_info;
     }
 
-    public void setRequest_info(byte[] request_info) {
+    public void setRequest_info(RequestInfo request_info) {
         Request_info = request_info;
     }
 }

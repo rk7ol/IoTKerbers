@@ -1,13 +1,14 @@
 package message.request;
 
 import message.MessageType;
+import module.RequestInfo;
 
 public class AccessRequestVerifyRequest extends Request{
     private long service_id;
-    private byte[] request_info;
+    private RequestInfo request_info;
 
 
-    public AccessRequestVerifyRequest( long service_id, byte[] request_info) {
+    public AccessRequestVerifyRequest(long service_id, RequestInfo request_info) {
         super(MessageType.ACCESS_REQUEST_VERIFY_REQUEST);
         this.service_id = service_id;
         this.request_info = request_info;
@@ -21,11 +22,11 @@ public class AccessRequestVerifyRequest extends Request{
         this.service_id = service_id;
     }
 
-    public byte[] getRequest_info() {
+    public RequestInfo getRequest_info() {
         return request_info;
     }
 
-    public void setRequest_info(byte[] request_info) {
+    public void setRequest_info(RequestInfo request_info) {
         this.request_info = request_info;
     }
 }

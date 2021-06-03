@@ -16,6 +16,7 @@ import java.util.Properties;
 public class Config {
 
     public static final Config config = new Config();
+    public Key clientServiceServerSessionKey;
 
 
 
@@ -72,6 +73,18 @@ public class Config {
 
     String clientID;
 
+    public byte[] getServiceServerKey() {
+        return ServiceServerKey;
+    }
+
+    public void setServiceServerKey(byte[] serviceServerKey) {
+        ServiceServerKey = serviceServerKey;
+    }
+
+    byte[] ServiceServerKey;
+
+
+
     byte[] password_hash64;
 
 
@@ -103,6 +116,14 @@ public class Config {
         return true;
     }
 
+    public Key getClientServiceServerSessionKey() {
+        return clientServiceServerSessionKey;
+    }
+
+    public void setClientServiceServerSessionKey(Key clientServiceServerSessionKey) {
+        this.clientServiceServerSessionKey = clientServiceServerSessionKey;
+    }
+
     public Key getClientTicketGrantingServerSessionKey() {
         return clientTicketGrantingServerSessionKey;
     }
@@ -127,6 +148,10 @@ public class Config {
         this.serviceServerTicket = serviceServerTicket;
     }
 
+    public void addServiceServerTicket(Long serviceID, ServiceServerTicket ticket){
+        serviceServerTicket.put(serviceID, ticket);
+    }
+
     public String getClientID() {
         return clientID;
     }
@@ -134,4 +159,5 @@ public class Config {
     public void setClientID(String clientID) {
         this.clientID = clientID;
     }
+
 }

@@ -1,20 +1,21 @@
 package message.request;
 
 import message.MessageType;
+import module.ticket.Ticket;
 
 public class ServiceTicketRequest extends Request{
-    private byte[] SST;
+    private Ticket SST;
 
-    public ServiceTicketRequest( byte[] SST) {
+    public ServiceTicketRequest(Ticket SST) {
         super(MessageType.SERVICE_TICKET_REQUEST);
         this.SST = SST;
     }
 
-    public byte[] getSST() {
+    public Ticket getSST() {
         return SST;
     }
 
-    public void setSST(byte[] SST) {
+    public void setSST(Ticket SST) {
         this.SST = SST;
     }
 }
