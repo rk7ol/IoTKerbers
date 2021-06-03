@@ -30,17 +30,18 @@ public class ServiceTicketRequestAndVerifyHandler extends MessageHandler {
         //使用解密后的SST中的KC-S做为参数调用requestInfo中的方法decrypt，解密requestInfo；
         request_info.decrypt(SST.getKey());
         //若requestInfo中的timestamp与系统时间相差不大于配置常量TIME_TOLERANCE则转到STEP 8；
-        if (request_info.getTimestamp() - System.currentTimeMillis() <= 100) {
+        if (request_info.getTimestamp().getTimestamp() - System.currentTimeMillis() <= 100) {
             //构造响应Service_Confirm，code 为 3；
             //发送响应Service_Confirm，返回true；
             ServiceConfirmResponse serviceConfirmResponse = new ServiceConfirmResponse(3, null);
             MessageSender.pushMessage(serviceConfirmResponse);
             return true;
-        } else if (request_info.getClientID().equals(SST.getClientID())) {//比对解密后的SST中client id与解密后的requestInfo中的client id，若匹配则转STEP 11；
+            //比对解密后的SST中client id与解密后的requestInfo中的client id，若匹配则转STEP 11；
+        } else if (request_info.getClientID().equals(SST.getClientID())) {
             Timestamp timestamp = new Timestamp();
             timestamp.encrypt(SST.getKey());
             //使用加密后的timestamp构造响应Service_Confirm，code 为 0；
-            ServiceConfirmResponse serviceConfirmResponse = new ServiceConfirmResponse(0, timestamp.getTimestamp());
+            ServiceConfirmResponse serviceConfirmResponse = new ServiceConfirmResponse(0, timestamp);
             //发送响应Service_Confirm，返回true。
             MessageSender.pushMessage(serviceConfirmResponse);
         } else {
@@ -49,7 +50,7 @@ public class ServiceTicketRequestAndVerifyHandler extends MessageHandler {
             MessageSender.pushMessage(serviceConfirmResponse);
             return true;
         }
-        return false; JJ}
+        return false; }
 
     @Override
     public boolean handle(List<Message> messages, MessageSender messageSender) {
