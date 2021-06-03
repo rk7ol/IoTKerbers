@@ -1,5 +1,6 @@
 package message.handler;
 
+import config.Config;
 import message.Message;
 import message.message_handler.handler.MessageHandler;
 import message.response.AccessKeyResponse;
@@ -8,7 +9,6 @@ import module.Key;
 import network.MessageSender;
 
 import java.util.List;
-import java.util.Set;
 
 public class AccessKeyResponseHandler extends MessageHandler {
     boolean handle(AccessKeyResponse accessKeyResponse , AccessTicketResponse accessTicketResponse,MessageSender messageSender){
@@ -23,6 +23,11 @@ public class AccessKeyResponseHandler extends MessageHandler {
                 //则调用静态UI函数弹窗，内容是授权失败，请求已过期；
             case 0:
                 //获取accessKeyResponse中的加密后的KC-S记为K1
+                Key bytes=accessKeyResponse.getcKC_TGS();
+                byte[] bytes1=Config.config.getPassword_hash64();
+                Key key = new Key(bytes1);
+                bytes.decrypt(key);
+                Config.config.setClientServiceServerSessionKey(bytes);
                 //调用静态函数getPassword_hash64获取用户密码hash值，用该值解密K1得到KC-S，调用静态函数
                 return true;
         }

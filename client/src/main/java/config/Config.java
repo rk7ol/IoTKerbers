@@ -14,6 +14,7 @@ import java.util.Properties;
 public class Config {
 
     public static final Config config = new Config();
+    public Key clientServiceServerSessionKey;
 
     public Config() {
     }
@@ -70,6 +71,14 @@ public class Config {
     public boolean setPassword_hash64(byte[] password_hash64) {
         this.password_hash64 = password_hash64;
         return true;
+    }
+
+    public Key getClientServiceServerSessionKey() {
+        return clientServiceServerSessionKey;
+    }
+
+    public void setClientServiceServerSessionKey(Key clientServiceServerSessionKey) {
+        this.clientServiceServerSessionKey = clientServiceServerSessionKey;
     }
 
     public Key getClientTicketGrantingServerSessionKey() {
