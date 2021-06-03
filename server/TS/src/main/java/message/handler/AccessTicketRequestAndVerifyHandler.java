@@ -17,7 +17,6 @@ import java.util.List;
 public class AccessTicketRequestAndVerifyHandler extends MessageHandler {
     //Access_Ticket_Request 和 Access_Request_Verify_Request 消息处理
     boolean handle(AccessTicketRequest accessTicketRequest, AccessRequestVerifyRequest accessRequestVerifyRequest, MessageSender messageSender){
-        Ticket TGT =accessTicketRequest.getTGT();
         //从accessTicketRequest中获取TGT
         Ticket TGT =accessTicketRequest.getTGT();
         Key KTGS = Config.config.getTicketGrantingServerKey();
