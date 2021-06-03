@@ -19,7 +19,6 @@ public class AuthLoginRequestHandler extends MessageHandler {
 
     boolean handle(AuthLoginRequest authLoginRequest, MessageSender messageSender) {
         if (authLoginRequest.getUsername() != null) {
-
             Key userSecretKey = new Key(Util.oneWayHash64(authLoginRequest.getUsername()));
             Key TGSSessionKey = new Key(Util.random64Bits());
 
@@ -27,8 +26,6 @@ public class AuthLoginRequestHandler extends MessageHandler {
 
             TicketGrantingTicket TGT = new TicketGrantingTicket(TGSSessionKey, authLoginRequest.getUsername(), null, System.currentTimeMillis());
             //TGT.encrypt(tgsk);
-
-
             TGT.encrypt(userSecretKey);//使用KTGS做为密钥调用TGT的方法encrypt加密TGT；
 
 
@@ -44,7 +41,6 @@ public class AuthLoginRequestHandler extends MessageHandler {
             System.out.println("username null");
             AuthTicketResponse authTicketResponse = new AuthTicketResponse(1, null);
             MessageSender.pushMessage(authTicketResponse);
-
             return true;
         }
     }

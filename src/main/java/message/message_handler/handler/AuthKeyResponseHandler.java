@@ -7,6 +7,7 @@ import module.Key;
 import module.ticket.TicketGrantingTicket;
 import network.MessageSender;
 import network.NettyMessageSender;
+
 import java.util.List;
 
 
@@ -54,7 +55,6 @@ public class AuthKeyResponseHandler extends MessageHandler{
         return false;
     }
 
-
     public static void main(String[] args) {
 
         AuthKeyResponseHandler authKeyResponseHandler = new AuthKeyResponseHandler();
@@ -67,13 +67,6 @@ public class AuthKeyResponseHandler extends MessageHandler{
         MessageSender sender = new NettyMessageSender();
 
         authKeyResponseHandler.handle(authKeyResponse, authTicketResponse, sender);
-
-
-
-
-
-
-
 
     }
 
