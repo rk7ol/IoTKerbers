@@ -27,8 +27,27 @@ public class KerberosNettyNetworkServer {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline p = ch.pipeline();
-                        p.addLast(new MessageEncoder());
-                        p.addLast(new MessageDecoder());
+                       // p.addLast(new MessageEncoder());
+                       // p.addLast(new MessageDecoder());
+
+
+                        p.addLast(new ChannelInboundHandlerAdapter(){
+
+                            @Override
+                            public void channelActive(ChannelHandlerContext ctx) throws Exception {
+                                super.channelActive(ctx);
+
+                                ctx.writeAndFlush("Hello from server");
+                            }
+
+                            @Override
+                            public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+                                super.channelRead(ctx, msg);
+
+                                System.out.println("client: " + msg);
+                            }
+                        });
+
                     }
                 });
     }
@@ -47,5 +66,16 @@ public class KerberosNettyNetworkServer {
     void shutdown(){
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+
+        KerberosNettyNetworkServer server = new KerberosNettyNetworkServer();
+
+        server.initializeServer();
+
+        server.listen(4122);
+
+
     }
 }
