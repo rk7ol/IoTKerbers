@@ -12,6 +12,8 @@ import java.util.List;
 
 public class AccessKeyResponseHandler extends MessageHandler {
     boolean handle(AccessKeyResponse accessKeyResponse , AccessTicketResponse accessTicketResponse,MessageSender messageSender){
+        //Access_Key_Response 消息处理
+        //Access_Ticket_Response 消息处理
         int KeyResponse=accessKeyResponse.getCode();
         int TicketResponse=accessTicketResponse.getCode();
         switch (KeyResponse){
@@ -41,6 +43,7 @@ public class AccessKeyResponseHandler extends MessageHandler {
             default:
                 return false;
         }
+
 
     }
 
