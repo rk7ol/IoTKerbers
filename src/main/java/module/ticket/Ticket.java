@@ -51,4 +51,9 @@ public class Ticket extends CryptUnit {
     public void setValidity(long validity) {
         this.validity = validity;
     }
+
+    @Override
+    protected void decrypt(byte[] key) {
+
+    }
 }

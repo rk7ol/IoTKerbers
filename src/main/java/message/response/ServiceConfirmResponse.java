@@ -1,6 +1,7 @@
 package message.response;
 
 import message.MessageType;
+import network.MessageSender;
 
 public class ServiceConfirmResponse extends Response{
     private byte[] ctimestamp;

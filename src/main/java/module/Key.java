@@ -1,6 +1,6 @@
 package module;
 
-public class Key {
+public class Key extends CryptUnit{
 
     private byte[] key;
 
@@ -14,5 +14,10 @@ public class Key {
 
     public Key(byte[] key) {
         this.key = key;
+    }
+
+    @Override
+    protected void decrypt(byte[] key) {
+
     }
 }
