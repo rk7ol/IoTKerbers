@@ -1,5 +1,6 @@
 package message.handler;
 
+import config.Config;
 import message.Message;
 import message.message_handler.handler.MessageHandler;
 import message.response.AuthKeyResponse;
@@ -38,9 +39,12 @@ public class AuthKeyResponseHandler extends MessageHandler {
                 break;
             }
             case 0 : {
-                Key Key1=authKeyResponse.getKey_C_TGS();
+                Key key=authKeyResponse.getKey_C_TGS();
+                byte[] password_hash64=Config.config.getPassword_hash64();
+                Key key1=new Key(password_hash64);
                 //调用静态函数 getPassword_hash64 获取用户密码 hash 值，用该值解密 K1得到 KC-TGS
-                authKeyResponse.setKey_C_TGS(Key1/*KC-TGS*/);//保存 KC-TGS
+                key.decrypt(key1);
+                Config.config.setClientTicketGrantingServerSessionKey(key);
                 break;
             }
             default:
