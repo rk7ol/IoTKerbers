@@ -3,6 +3,7 @@ package message.handler;
 import message.Message;
 import message.message_handler.handler.MessageHandler;
 import message.response.ServiceConfirmResponse;
+import module.Timestamp;
 import network.MessageSender;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class ServiceConfirmResponseHandler extends MessageHandler {
         }if (serviceConfirmResponse.getCode()==3){
             return false;
         }if (serviceConfirmResponse.getCode()==0){
-            byte[] t=serviceConfirmResponse.getCtimestamp();
+            Timestamp t=serviceConfirmResponse.getCtimestamp();
             return true;
         }else {
             return false;

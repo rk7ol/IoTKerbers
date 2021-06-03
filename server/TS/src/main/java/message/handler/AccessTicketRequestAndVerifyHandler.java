@@ -6,17 +6,16 @@ import message.message_handler.handler.MessageHandler;
 import message.request.AccessRequestVerifyRequest;
 import message.request.AccessTicketRequest;
 import message.response.AccessTicketResponse;
-import message.response.Response;
 import module.Key;
-import module.ticket.TicketGrantingTicket;
+import module.ticket.Ticket;
 import network.MessageSender;
 
 import java.util.List;
-import java.util.Set;
+
 //服务授权
 public class AccessTicketRequestAndVerifyHandler extends MessageHandler {
     boolean handle(AccessTicketRequest accessTicketRequest, AccessRequestVerifyRequest accessRequestVerifyRequest, MessageSender messageSender){
-        byte[] TGT =accessTicketRequest.getTGT();
+        Ticket TGT =accessTicketRequest.getTGT();
 
 
         Key KTGS = Config.config.getTicketGrantingServerKey();

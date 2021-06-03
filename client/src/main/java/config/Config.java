@@ -44,6 +44,18 @@ public class Config {
 
     String clientID;
 
+    public byte[] getServiceServerKey() {
+        return ServiceServerKey;
+    }
+
+    public void setServiceServerKey(byte[] serviceServerKey) {
+        ServiceServerKey = serviceServerKey;
+    }
+
+    byte[] ServiceServerKey;
+
+
+
     byte[] password_hash64;
 
     public TicketGrantingTicket getTicketGrantingTicket() {
@@ -112,4 +124,5 @@ public class Config {
     public void setClientID(String clientID) {
         this.clientID = clientID;
     }
+
 }

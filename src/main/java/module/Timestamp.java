@@ -21,13 +21,13 @@ public class Timestamp extends CryptUnit {
         }
     };
 
-    private long timestamp;
+    private Timestamp timestamp;
 
-    public long getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 

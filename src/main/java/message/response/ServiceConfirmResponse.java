@@ -1,21 +1,21 @@
 package message.response;
 
 import message.MessageType;
-import network.MessageSender;
+import module.Timestamp;
 
 public class ServiceConfirmResponse extends Response{
-    private byte[] ctimestamp;
+    private Timestamp ctimestamp;
 
-    public ServiceConfirmResponse( int code, byte[] ctimestamp) {
+    public ServiceConfirmResponse(int code, Timestamp ctimestamp) {
         super(MessageType.SERVICE_CONFIRM_RESPONSE, code);
         this.ctimestamp = ctimestamp;
     }
 
-    public byte[] getCtimestamp() {
+    public Timestamp getCtimestamp() {
         return ctimestamp;
     }
 
-    public void setCtimestamp(byte[] ctimestamp) {
+    public void setCtimestamp(Timestamp ctimestamp) {
         this.ctimestamp = ctimestamp;
     }
 }
