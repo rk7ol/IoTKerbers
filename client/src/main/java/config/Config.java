@@ -117,6 +117,10 @@ public class Config {
         this.serviceServerTicket = serviceServerTicket;
     }
 
+    public void addServiceServerTicket(Long serviceID, ServiceServerTicket ticket){
+        serviceServerTicket.put(serviceID, ticket);
+    }
+
     public String getClientID() {
         return clientID;
     }

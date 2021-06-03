@@ -18,5 +18,8 @@ public abstract class MessageSender {
     }
 
 
+    public abstract byte[] getRemoteAddress();
+
+
     abstract boolean sendMessage(Message message);
 }

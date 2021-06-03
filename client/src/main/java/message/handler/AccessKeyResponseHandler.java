@@ -38,7 +38,7 @@ public class AccessKeyResponseHandler extends MessageHandler {
                 //则调用静态UI函数弹窗，内容是认证失败，用户不存在；
             case 0:
                 //获取accessTicketResponse中的SST；
-                accessTicketResponse.getTGT();
+                Config.config.setServiceServerTicket(1,accessTicketResponse.getSST());
                 return true;
             default:
                 return false;

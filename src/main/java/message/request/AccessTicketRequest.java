@@ -1,21 +1,21 @@
 package message.request;
 
 import message.MessageType;
-import module.ticket.Ticket;
+import module.ticket.ServiceServerTicket;
 
 public class AccessTicketRequest extends Request{
-    private Ticket TGT;
+    private ServiceServerTicket TGT;
 
-    public AccessTicketRequest(Ticket TGT) {
+    public AccessTicketRequest(ServiceServerTicket TGT) {
         super(MessageType.ACCESS_TICKET_REQUEST);
         this.TGT = TGT;
     }
 
-    public Ticket getTGT() {
+    public ServiceServerTicket getTGT() {
         return TGT;
     }
 
-    public void setTGT(Ticket TGT) {
+    public void setTGT(ServiceServerTicket TGT) {
         this.TGT = TGT;
     }
 }
