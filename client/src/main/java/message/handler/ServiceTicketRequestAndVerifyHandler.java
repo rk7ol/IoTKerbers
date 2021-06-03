@@ -34,7 +34,7 @@ public class ServiceTicketRequestAndVerifyHandler extends MessageHandler {
             //构造响应Service_Confirm，code 为 3；
             //发送响应Service_Confirm，返回true；
             ServiceConfirmResponse serviceConfirmResponse = new ServiceConfirmResponse(3, null);
-            MessageSender.pushMessage(serviceConfirmResponse);
+            messageSender.pushMessage(serviceConfirmResponse);
             return true;
             //比对解密后的SST中client id与解密后的requestInfo中的client id，若匹配则转STEP 11；
         } else if (request_info.getClientID().equals(SST.getClientID())) {
@@ -43,11 +43,11 @@ public class ServiceTicketRequestAndVerifyHandler extends MessageHandler {
             //使用加密后的timestamp构造响应Service_Confirm，code 为 0；
             ServiceConfirmResponse serviceConfirmResponse = new ServiceConfirmResponse(0, timestamp);
             //发送响应Service_Confirm，返回true。
-            MessageSender.pushMessage(serviceConfirmResponse);
+            messageSender.pushMessage(serviceConfirmResponse);
         } else {
             //构造响应Service_Confirm，code 为 1；
             ServiceConfirmResponse serviceConfirmResponse = new ServiceConfirmResponse(1, null);
-            MessageSender.pushMessage(serviceConfirmResponse);
+            messageSender.pushMessage(serviceConfirmResponse);
             return true;
         }
         return false; }

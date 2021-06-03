@@ -59,22 +59,4 @@ public class AuthKeyResponseHandler extends MessageHandler {
     public boolean handle(List<Message> messages, MessageSender messageSender) {
         return false;
     }
-
-    public static void main(String[] args) {
-
-        AuthKeyResponseHandler authKeyResponseHandler = new AuthKeyResponseHandler();
-
-        byte[] bytes = new byte[64];
-        Key key = new Key(bytes);
-        AuthKeyResponse authKeyResponse = new AuthKeyResponse(1, key);
-        AuthTicketResponse authTicketResponse = new AuthTicketResponse(1, null);
-
-        MessageSender sender = new NettyMessageSender();
-
-        authKeyResponseHandler.handle(authKeyResponse, authTicketResponse, sender);
-
-    }
-
-
-
 }

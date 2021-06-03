@@ -41,20 +41,20 @@ public class AccessTicketRequestAndVerifyHandler extends MessageHandler {
             //构造响应Access_Ticket_Response，code 为 3；
             //发送响应Access_Ticket_Response，返回true；
             AccessTicketResponse accessTicketResponse=new AccessTicketResponse(3, null);
-            MessageSender.pushMessage(accessTicketResponse);
+            messageSender.pushMessage(accessTicketResponse);
             return true;
         }else if(requestInfo.getClientID()!=TGT.getClientID()){
             AccessTicketResponse accessTicketResponse=new AccessTicketResponse(1,null);
-            MessageSender.pushMessage(accessTicketResponse);
+            messageSender.pushMessage(accessTicketResponse);
             return true;
         }else if(a>0){
             AccessTicketResponse accessTicketResponse=new AccessTicketResponse(2,null);
-            MessageSender.pushMessage(accessTicketResponse);
+            messageSender.pushMessage(accessTicketResponse);
         }else {
             AccessTicketResponse accessTicketResponse=new AccessTicketResponse(0,serviceServerTicket);
             AccessKeyResponse accessKeyResponse=new AccessKeyResponse(0,key);
-            MessageSender.pushMessage(accessTicketResponse);
-            MessageSender.pushMessage(accessKeyResponse);
+            messageSender.pushMessage(accessTicketResponse);
+            messageSender.pushMessage(accessKeyResponse);
         }
 
         return false;

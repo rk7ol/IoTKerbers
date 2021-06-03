@@ -9,7 +9,6 @@ import message.response.AuthTicketResponse;
 import module.Key;
 import module.ticket.TicketGrantingTicket;
 import network.MessageSender;
-import network.NettyMessageSender;
 import util.Util;
 
 import java.util.List;
@@ -33,14 +32,14 @@ public class AuthLoginRequestHandler extends MessageHandler {
             AuthKeyResponse authKeyResponse = new AuthKeyResponse(0, TGSSessionKey);
             AuthTicketResponse authTicketResponse = new AuthTicketResponse(0, TGT);
 
-            MessageSender.pushMessage(authKeyResponse);
-            MessageSender.pushMessage(authTicketResponse);
+            messageSender.pushMessage(authKeyResponse);
+            messageSender.pushMessage(authTicketResponse);
 
             return true;
         } else {
             System.out.println("username null");
             AuthTicketResponse authTicketResponse = new AuthTicketResponse(1, null);
-            MessageSender.pushMessage(authTicketResponse);
+            messageSender.pushMessage(authTicketResponse);
             return true;
         }
     }
@@ -53,15 +52,6 @@ public class AuthLoginRequestHandler extends MessageHandler {
         return false;
     }
 
-    public static void main(String[] args) {
-        AuthLoginRequestHandler authLoginRequestHandler = new AuthLoginRequestHandler();
-
-        AuthLoginRequest authLoginRequest = new AuthLoginRequest(null);
-        MessageSender sender = new NettyMessageSender();
-
-        authLoginRequestHandler.handle(authLoginRequest, sender);
-
-    }
 
 
 }
