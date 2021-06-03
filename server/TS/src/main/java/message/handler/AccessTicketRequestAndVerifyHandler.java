@@ -5,7 +5,11 @@ import message.Message;
 import message.message_handler.handler.MessageHandler;
 import message.request.AccessRequestVerifyRequest;
 import message.request.AccessTicketRequest;
+<<<<<<< HEAD
 import message.response.AccessKeyResponse;
+=======
+import message.request.Request;
+>>>>>>> df70322cbdb58cb86dfeea172b18e277cadd07ec
 import message.response.AccessTicketResponse;
 import module.Key;
 import module.RequestInfo;
@@ -15,6 +19,7 @@ import network.MessageSender;
 import util.Util;
 
 import java.util.List;
+import java.util.Objects;
 
 //服务授权
 public class AccessTicketRequestAndVerifyHandler extends MessageHandler {
