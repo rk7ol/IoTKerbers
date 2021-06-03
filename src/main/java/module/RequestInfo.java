@@ -1,5 +1,7 @@
 package module;
 
+import module.ticket.Ticket;
+
 public class RequestInfo extends CryptUnit{
 
     private String clientID;

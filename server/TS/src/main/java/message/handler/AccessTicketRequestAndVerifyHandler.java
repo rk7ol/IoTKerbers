@@ -5,13 +5,16 @@ import message.Message;
 import message.message_handler.handler.MessageHandler;
 import message.request.AccessRequestVerifyRequest;
 import message.request.AccessTicketRequest;
+import message.request.Request;
 import message.response.AccessTicketResponse;
 import module.Key;
+import module.RequestInfo;
 import module.ticket.Ticket;
 import module.ticket.TicketGrantingTicket;
 import network.MessageSender;
 
 import java.util.List;
+import java.util.Objects;
 
 //服务授权
 public class AccessTicketRequestAndVerifyHandler extends MessageHandler {
@@ -20,11 +23,13 @@ public class AccessTicketRequestAndVerifyHandler extends MessageHandler {
         //从accessTicketRequest中获取TGT
         Ticket TGT =accessTicketRequest.getTGT();
         Key KTGS = Config.config.getTicketGrantingServerKey();//获取KTGS
-
-        //TicketGrantingTicket ticketGrantingTicket=new TicketGrantingTicket(KTGS,null,null,0);
+        Key KCTGS=TGT.decrypt(KTGS);
         //使用KTGS做为参数调用TGT的方法decrypt，解密TGT；
         byte[] bytes1=accessRequestVerifyRequest.getRequest_info();//获取 requestInfo
         //使用解密后的TGT中的KC-TGS做为参数调用requestInfo中的方法decrypt，解密requestInfo；
+        RequestInfo requestInfo=new RequestInfo();
+        requestInfo.decrypt(KCTGS);
+
         //若requestInfo中的timestamp与系统时间相差不大于配置常量TIME_TOLERANCE则转到 STEP 8
         //构造响应Access_Ticket_Response，code 为 3；
         AccessTicketResponse accessTicketResponse=new AccessTicketResponse(3,TGT);
