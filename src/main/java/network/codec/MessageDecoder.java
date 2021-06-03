@@ -4,27 +4,28 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import message.Message;
 import util.serialization.MessageJacksonDecoder;
 
 import java.util.List;
 
-public class MessageDecoder extends DelimiterBasedFrameDecoder {
+public class MessageDecoder extends ByteToMessageDecoder {
 
     MessageJacksonDecoder decoder = new MessageJacksonDecoder();
 
 
     @Override
-    protected Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
+    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
 
+        byte[] bytes = new byte[in.readableBytes()];
 
-        return decoder.decode(buffer.array());
+        in.readBytes(bytes);
 
+        System.out.println(new String(bytes));
 
-        //  super.decode(ctx, buffer);
-    }
+        Object obj = decoder.decode(bytes);
 
-    public MessageDecoder(int maxFrameLength, ByteBuf delimiter) {
-        super(maxFrameLength, delimiter);
+        out.add(obj);
 
     }
 }

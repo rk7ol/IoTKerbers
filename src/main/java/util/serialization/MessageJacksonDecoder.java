@@ -3,6 +3,8 @@ package util.serialization;
 import message.Message;
 import message.MessageType;
 import message.request.AuthLoginRequest;
+import message.response.AuthKeyResponse;
+import message.response.AuthTicketResponse;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,6 +18,10 @@ public class MessageJacksonDecoder extends JacksonDecoder<Message> {
         MESSAGE_TYPE_CLASS_MAP = new HashMap<>();
 
         MESSAGE_TYPE_CLASS_MAP.put(MessageType.AUTH_LOGIN_REQUEST, AuthLoginRequest.class);
+        MESSAGE_TYPE_CLASS_MAP.put(MessageType.AUTH_KEY_RESPONSE, AuthKeyResponse.class);
+        MESSAGE_TYPE_CLASS_MAP.put(MessageType.AUTH_TICKET_RESPONSE, AuthTicketResponse.class);
+
+
     }
 
 
