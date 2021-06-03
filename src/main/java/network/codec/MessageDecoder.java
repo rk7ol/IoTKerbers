@@ -1,13 +1,27 @@
 package network.codec;
 
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.ByteToMessageDecoder;
+import util.serialization.MessageJacksonDecoder;
 
-public class MessageDecoder extends LengthFieldBasedFrameDecoder {
-    public MessageDecoder(int maxFrameLength, int lengthFieldOffset, int lengthFieldLength, int lengthAdjustment, int initialBytesToStrip) {
-        super(maxFrameLength, lengthFieldOffset, lengthFieldLength, lengthAdjustment, initialBytesToStrip);
-    }
+import java.util.List;
 
-    public MessageDecoder(){
-        this(16, 5, 4, -9, 0);
+public class MessageDecoder extends ByteToMessageDecoder {
+
+    MessageJacksonDecoder decoder = new MessageJacksonDecoder();
+
+
+    @Override
+    protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list) throws Exception {
+
+
+        byte[] bytes = new byte[1024];
+
+        byteBuf.readBytes(bytes);
+
+        list.add(decoder.decode(bytes));
+
+
     }
 }
