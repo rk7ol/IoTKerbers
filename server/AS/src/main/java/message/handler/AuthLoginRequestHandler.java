@@ -17,18 +17,20 @@ import java.util.List;
 public class AuthLoginRequestHandler extends MessageHandler {
 
     boolean handle(AuthLoginRequest authLoginRequest, MessageSender messageSender) {
+        //STEP 1：查询用户是否存在，若存在则到STEP 4
         if (authLoginRequest.getUsername() != null) {
             Key userSecretKey = new Key(Util.oneWayHash64(authLoginRequest.getUsername()));
             Key TGSSessionKey = new Key(Util.random64Bits());
             TGSSessionKey.encrypt(userSecretKey);
 
 
-            TicketGrantingTicket TGT = new TicketGrantingTicket(TGSSessionKey, authLoginRequest.getUsername(), null, System.currentTimeMillis());
+            TicketGrantingTicket TGT = new TicketGrantingTicket(TGSSessionKey, authLoginRequest.getUsername(), messageSender.getRemoteAddress(), System.currentTimeMillis()+Config.config.getGT_ACTIVE_DURATION());
+            //使用用户密码hash值做为密钥调用KC-TGS的方法encrypt加密KC-TGS；
+            TGSSessionKey.encrypt(userSecretKey);
             TGT.encrypt(Config.config.getTicketGrantingServerKey());//使用KTGS做为密钥调用TGT的方法encrypt加密TGT；
 
 
-            AuthKeyResponse authKeyResponse = new AuthKeyResponse(0, userSecretKey);
-
+            AuthKeyResponse authKeyResponse = new AuthKeyResponse(0, TGSSessionKey);
             AuthTicketResponse authTicketResponse = new AuthTicketResponse(0, TGT);
 
             MessageSender.pushMessage(authKeyResponse);
