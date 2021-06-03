@@ -4,17 +4,17 @@ import message.MessageType;
 import module.ticket.Ticket;
 
 public class AccessTicketResponse extends Response{
-    private byte[] TGT;
+    private Ticket TGT;
 
     public AccessTicketResponse(int code, Ticket TGT) {
         super(MessageType.ACCESS_TICKET_RESPONSE, code);
         this.TGT = TGT;
     }
-    public byte[] getTGT() {
+    public Ticket getTGT() {
         return TGT;
     }
 
-    public void setTGT(byte[] TGT) {
+    public void setTGT(Ticket TGT) {
         this.TGT = TGT;
     }
 }
