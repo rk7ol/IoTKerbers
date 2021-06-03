@@ -1,5 +1,6 @@
 package config;
 
+import message.MessageType;
 import module.Key;
 import module.ticket.ServiceServerTicket;
 import module.ticket.TicketGrantingTicket;
@@ -8,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -15,8 +17,15 @@ public class Config {
 
     public static final Config config = new Config();
 
+
+
     public Config() {
     }
+
+    
+    private static Map<MessageType, String> typeAddressMap;
+
+    private static Map<MessageType, Integer> typePortMap;
 
     static {
         try {
@@ -25,13 +34,33 @@ public class Config {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("./config.properties"));
             properties.load(bufferedReader);
             // 获取key对应的value值
-            Key clientTicketGrantingServerSessionKey_V = new Key(properties.getProperty("clientTicketGrantingServerSessionKey").getBytes(StandardCharsets.UTF_8));
+            //Key clientTicketGrantingServerSessionKey_V = new Key(properties.getProperty("clientTicketGrantingServerSessionKey").getBytes(StandardCharsets.UTF_8));
+
+
+            String ASAddress = properties.getProperty("ASAddress");
+            int ASPort = Integer.parseInt(properties.getProperty("ASPort"));
+            typeAddressMap = new HashMap<>();
+            typePortMap = new HashMap<>();
+
+            typeAddressMap.put(MessageType.AUTH_LOGIN_REQUEST, ASAddress);
+            typePortMap.put(MessageType.AUTH_LOGIN_REQUEST, ASPort);
 
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public static String getAddressByMessageType(MessageType type){
+        return typeAddressMap.get(type);
+    }
+
+    public static int getPortByMessageType(MessageType type){
+        return typePortMap.get(type);
+    }
+
+
+
 
     Key clientTicketGrantingServerSessionKey;
 
@@ -44,6 +73,8 @@ public class Config {
     String clientID;
 
     byte[] password_hash64;
+
+
 
     public TicketGrantingTicket getTicketGrantingTicket() {
         return ticketGrantingTicket;
