@@ -5,11 +5,20 @@ import message.response.ServiceConfirmResponse;
 import network.MessageSender;
 
 import java.util.List;
-import java.util.Set;
+
 
 public class ServiceConfirmResponseHandler extends MessageHandler{
     boolean handle(ServiceConfirmResponse serviceConfirmResponse, MessageSender messageSender){
-        return false;
+        if (serviceConfirmResponse.getCode()==1){
+            return false;
+        }if (serviceConfirmResponse.getCode()==3){
+            return false;
+        }if (serviceConfirmResponse.getCode()==0){
+            byte[] t=serviceConfirmResponse.getCtimestamp();
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
